@@ -1,7 +1,8 @@
 class Boat {
   float x, y, sz, vel, maxDist;
   float startx, starty;
-  Boat(float xx, float yy, float v, float mD) {
+  Waves waves;
+  Boat(float xx, float yy, float v, float mD, Waves w) {
     startx = xx;
     starty = yy;
     x = xx;
@@ -9,12 +10,10 @@ class Boat {
     sz = 100;
     vel = v;
     maxDist = mD;
+    waves = w;
   }
   void move() {
-    if (abs(starty-y) >= maxDist) {
-      vel *= -1;
-    }
-    y += vel;
+    y = waves.getY()-sz/8.0;
   }
   void display() {
     fill(222, 184, 135);
