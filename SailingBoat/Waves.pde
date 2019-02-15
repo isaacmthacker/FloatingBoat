@@ -43,4 +43,7 @@ class Waves {
   float getY() {
     return waves.get(0).y;
   }
+  float getSz() {
+    return sz;
+  }
 }
