@@ -1,15 +1,10 @@
 class Boat {
-  float x, y, sz, vel, maxDist;
-  float startx, starty;
+  float x, y, sz;
   Waves waves;
-  Boat(float xx, float yy, float v, float mD, Waves w) {
-    startx = xx;
-    starty = yy;
+  Boat(float xx, float yy, Waves w) {
     x = xx;
     y = yy;
     sz = 100;
-    vel = v;
-    maxDist = mD;
     waves = w;
   }
   void move() {

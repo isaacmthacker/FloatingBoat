@@ -1,34 +1,20 @@
 class Wave {
-  float x, y, startx, starty, sz, vel, maxDist, acc;
+  float x, y, sz;
   int numSteps = 30; 
   color c;
   PShape s;
-  Wave(float xx, float yy, float syy, float ss, float vv, float aa, float mD, color cc) {
+  Wave(float xx, float yy, float ss, color cc) {
     x = xx;
     y = yy;
-    startx = xx;
-    starty = syy;
     sz = ss;
-    maxDist = mD;
-    vel = vv;
-    acc = aa;
     c = cc;
     s = MakeShape();
-  }
-  void move() {
-    y += vel;
-    if (y-starty >= maxDist) {
-      vel *= -1;
-    }
-    vel += acc;
-    x -= 0.5;
   }
   PShape MakeShape() {
     int numPoints = 20;
     PShape s = createShape();
     s.beginShape();
     s.stroke(c);
-    //s.noStroke();
     float angle = PI;
     float step = PI/(2*numPoints);
     s.vertex(-sz/2.0, sz);
@@ -44,7 +30,7 @@ class Wave {
   }
   void display() {
     pushMatrix();
-    translate(x,y);
+    translate(x, y);
     shape(s, 0, 0);
     noFill();
     arc(0, 0, sz, sz, 0, PI);
@@ -53,8 +39,9 @@ class Wave {
   boolean outOfFrame() {
     return x+sz <= 0 || x-sz >= width;
   }
-  void run() {
-    move();
+  void run(float yy) {
+    y = yy;
+    x -= 0.5;
     display();
   }
 }
